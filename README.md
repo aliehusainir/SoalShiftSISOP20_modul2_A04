@@ -90,3 +90,7 @@ Child kemudian menjalankan fungsi `execv()`, sedangkan parent melakukan `sleep()
 ## 2c. Memasukkan folder ke dalam zip dan menghapus folder semula
 Setelah looping untuk download sebanyak 20 kali selesai, dibuat string yang berisi `timestr`.zip.<br/>
 Program kemudian menjalankan `execv()` untuk memasukkan folder `timestr` ke dalam `timestr`.zip.
+## 2d. Membuat program killer
+Fungsi `fopen` digunakan untuk membuat file `kill.sh`, yaitu script yang berisi `kill -9 (PID) rm "$0"`.<br/>
+Script ini akan membunuh parent process beserta anak-anaknya, kemudian menghapus dirinya.<br/>
+## 2e. Mode -a dan -b
