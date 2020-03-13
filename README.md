@@ -7,15 +7,22 @@ Praktikum Modul 2 Sisop 2020<br/>
   Input berupa argumen, dapat dilakukan dengan menambahkan argumen int argc, char *argv[]. argc digunakan untuk menyimpan jumlah argumen yang telah diinput dan argv[] digunakan untuk menyimpan setiap argumen yang dipisahkan oleh spasi dan \.
 ## 1b. Program akan mengeluarkan pesan error jika argumen yang diberikan tidak sesuai
   Jumlah argumen tidak boleh sama dengan 5. argc != 5. Sehingga akan mengeluarkan pesan error "Jumlah argumen tidak sesuai".
+
   ![1b](https://user-images.githubusercontent.com/56763570/76609224-4152a100-64d4-11ea-981f-8eb18ccfa3eb.jpg)
+  
   Jika ada string * maka sehingga di set nilai = 0. Nilai detik, menit, jam disimpan pada array
+  
   ![bintang](https://user-images.githubusercontent.com/56763570/76609441-a27a7480-64d4-11ea-8f0e-cdbda0a9018c.jpg)
+  
   khusus untuk path file isi argumen ke 4 di copy ke sebuah array string yang bernama addres
+  
   ![add](https://user-images.githubusercontent.com/56763570/76610407-15d0b600-64d6-11ea-90c0-2e759ab6e65a.jpeg)
+  
   Jika menginputkan nilai detik, menit tidak pada interval 0-59 dan jam tidak pada interval 0-23 maka akan mengeluarkan pesan error.
 ## 1c. Program hanya menerima 1 config cron
 ## 1d. Program berjalan di background (daemon)
   Program berjalan poda backround daemon sehingga mengambil tempate sama seperti pada modul 2.
+  
   pid_t pid, sid;      
 
   pid = fork();     
@@ -66,6 +73,7 @@ Praktikum Modul 2 Sisop 2020<br/>
     sleep(1);
   }
 }
+
 ![WhatsApp Image 2020-03-13 at 02 26 22 (1)](https://user-images.githubusercontent.com/56763570/76610942-e9696980-64d6-11ea-9e01-432ca127165b.jpeg)
 ![hasil](https://user-images.githubusercontent.com/56763570/76611117-3baa8a80-64d7-11ea-86c3-faefada514ee.jpg)
 # Soal 2
