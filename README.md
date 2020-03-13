@@ -94,3 +94,5 @@ Program kemudian menjalankan `execv()` untuk memasukkan folder `timestr` ke dala
 Fungsi `fopen` digunakan untuk membuat file `kill.sh`, yaitu script yang berisi `kill -9 (PID) rm "$0"`.<br/>
 Script ini akan membunuh parent process beserta anak-anaknya, kemudian menghapus dirinya.<br/>
 ## 2e. Mode -a dan -b
+## Kendala
+Program masih sering nge-bug.
