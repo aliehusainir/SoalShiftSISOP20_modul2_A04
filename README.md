@@ -91,8 +91,22 @@ Child kemudian menjalankan fungsi `execv()`, sedangkan parent melakukan `sleep()
 Setelah looping untuk download sebanyak 20 kali selesai, dibuat string yang berisi `timestr`.zip.<br/>
 Program kemudian menjalankan `execv()` untuk memasukkan folder `timestr` ke dalam `timestr`.zip.
 ## 2d. Membuat program killer
-Fungsi `fopen` digunakan untuk membuat file `kill.sh`, yaitu script yang berisi `kill -9 (PID) rm "$0"`.<br/>
+Fungsi `fopen` digunakan untuk membuat file `kill.sh`, yaitu script yang berisi `kill -9 -(PID) rm "$0"`.<br/>
 Script ini akan membunuh parent process beserta anak-anaknya, kemudian menghapus dirinya.<br/>
 ## 2e. Mode -a dan -b
-## Kendala
-Program masih sering nge-bug.
+Perbedaannya adalah untuk mode -a, script berisi `kill -9` atau SIGKILL, sedangkan untuk mode -b script berisi<br/>
+`kill -15` atau SIGTERM.
+# Soal 3
+## 3a. Membuat directory `indomie` dan `sedaap`
+Untuk bagian ini hanya perlu dilakukan `fork()` untuk membuat directory `indomie`, lalu parent melakukan `sleep(5)`,<br/>
+kemudian `fork()` lagi untuk membuat directory `sedaap`.
+## 3b. Mengekstrak file `jpg.zip`
+Dilakukan `fork()` sekali lagi, kemudian menjalankan `unzip` dengan `exec()`.
+## 3c. Memindahkan file ke `sedaap` dan directory ke `indomie`
+Setelah proses `unzip` selesai, dilakukan `fork()`dua kali, yang pertama untuk mencari dan memindahkan file ke<br/>
+directory `sedaap` menggunakan `find` dengan option `-type f` dan `-exec mv`. Yang kedua kurang lebih sama,<br/>
+tapi menggunakan option `-type d` untuk memindahkan semua directory ke directory `indomie`.
+## 3d. Membuat file kosong `coba1.txt` dan `coba2.txt` pada setiap directory
+Untuk yang terakhir agak mirip dengan 3c dimana digunakan `find` untuk menemukan semua folder dalam `indomie`, <br/>
+namun untuk option-nya digunakan `touch` untuk membuat file kosong dengan tambahan `-mindepth 1` agar tidak membuat<br/>
+file `coba1.txt` dan `coba2.txt` di folder `indomie`.
