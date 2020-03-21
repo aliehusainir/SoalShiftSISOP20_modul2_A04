@@ -9,19 +9,30 @@
 #include <unistd.h>
 
 int main(int argc, char *argv[]) {
-  pid_t child_id = 1;
+  pid_t child_id = 1, pid, sid;
   int status;
   time_t rawtime;
   struct tm *info;
   char timestr[50];
 
+  pid = fork();
+  if(pid < 0)exit(EXIT_FAILURE);
+  if(pid > 0)exit(EXIT_SUCCESS);
+  umask(0);
+  sid = setsid();
+  if(sid < 0)exit(EXIT_FAILURE);
+  close(STDIN_FILENO);
+  close(STDOUT_FILENO);
+  close(STDERR_FILENO);
+
   FILE *kill;
   pid_t id = getpid();
   kill = fopen("kill.sh", "w");
   puts(argv[1]);
-  if(strcmp(argv[1], "-a") == 0)fprintf(kill, "#!/bin/bash\nkill -9 %d\nrm \"$0\"", id);
-  else if(strcmp(argv[1], "-b") == 0)fprintf(kill, "#!/bin/bash\nkill -15 %d\nrm \"$0\"", id);
+  if(strcmp(argv[1], "-a") == 0)fprintf(kill, "#!/bin/bash\nkill -9 -%d\nrm \"$0\"", id);
+  else if(strcmp(argv[1], "-b") == 0)fprintf(kill, "#!/bin/bash\nkill -15 -%d\nrm \"$0\"", id);
   fclose(kill);
+
   child_id = fork();
   if(child_id == 0){
     child_id = 1;
@@ -53,14 +64,9 @@ int main(int argc, char *argv[]) {
       sleep(5);
     }
     while(wait(&status)>0);
-    child_id = fork();
-    if(child_id == 0){
-      char zip[100];
-      sprintf(zip, "%s.zip", timestr);
-      char *argw[] = {"zip", "-mr", zip , timestr, NULL};
-      execv("/usr/bin/zip", argw);
-    }
-    exit(0);
+    char zip[100];
+    sprintf(zip, "%s.zip", timestr);
+    char *argw[] = {"zip", "-mr", zip , timestr, NULL};
+    execv("/usr/bin/zip", argw);
   }
-  while(1);
 }
